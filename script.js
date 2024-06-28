@@ -1,14 +1,17 @@
-const name = document.getElementById('username')
-const password = document.getElementById('password')
-const form = document.getElementById('form')
+function validateForm(){
+    const name = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const form = document.getElementById('form').value;
+    const email = document.getElementById('email').value;
+    const error = document.getElementById('error');
 
-form.addEventListener('submit', (e) => {
-    let messages = []
-    if (name.value === '' || name.value == null) {
-        messages.push('Name is required')
+    const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    if(!regexPassword.test(password)){
+        errorMessage.innerHTML = 'Пароль должен содержать минимум 6 символов, одну заглавную и одну строчную буквы и цифру'
     }
-    if (messages.length > 0) {
-        e.preventDefault()
-        errorElement.innerText = messages.join(', ')
-    }
-})
+    alert('Данные отправлены');
+    errorMessage.innerHTML = '';
+    return true;
+}
+
